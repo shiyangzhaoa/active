@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<title>QAQ</title>
+	<style>
+		body{
+			margin: 0;
+			padding: 0;
+			font-size: 20px;
+			font-family: "Microsoft Yahei";
+			background-color: #eff3f5;
+			list-style:none;
+			list-style: none;
+		}
+		@media screen  and (max-width: 800px) {
+			.user_img {
+				width: 80vw;
+				height: 17vw;
+			}
+			.user_text {
+				font-size: .5rem;
+				margin-top: -10px;
+			}
+			.my_header {
+				height: 32vw;
+			}
+		}
+		@media screen  and (min-width: 800px) {
+			.user_img {
+				width: 800px;
+				height: 170px;
+			}
+			.user_text {
+				font-size: .9rem;
+				margin-top: 
+			}
+			.my_header {
+				height: 320px;
+			}
+		}
+		.my_header {
+			width: 100vw;
+			background-image: url('./bg.png');
+			background-size: cover;
+			background-position: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			position: relative;
+		}
+		.user_info {
+			position: relative;
+		}
+		.user_text {
+			color: #232323;
+			position: absolute;
+			text-align: center;
+			bottom: 10px;
+			width: 100%;
+		}
+		.window {
+			width: 100vw;
+			overflow: hidden;
+		}
+		.my_body {
+			width: 100vw;
+			padding: 0 10vw;
+			box-sizing: border-box;
+			margin: 40px 0;
+			display: flex;
+			justify-content: flex-start;
+			flex-wrap: wrap;
+		}
+		.art_item {
+			width: 30vw;
+			height: 30vw;
+			background-color: #fff;
+			margin-top: 28px;
+			display: inline-block;
+		}
+		.body_img {
+			width: 24%;
+			height: 12rem;
+			margin: 28px 4.66% 0 4.66%;
+			position: relative;
+			transition: all .5s;
+		}
+		.body_img:hover {
+			box-shadow: 0 0 20px 20px #ccc;
+			cursor: pointer;
+			transform: translateY(-20px);
+		}
+		.nav_bar {
+			width: 100vw;
+			color: white;
+			position: absolute;
+			bottom: 10px;
+			display: flex;
+			justify-content: center;
+		}
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+		.nav_bar li {
+			display: inline-block;
+			width: 30vw;
+			text-align: center;
+		}
+		.active {
+			border-bottom: 2px solid #000;
+			color: #000;
+		}
+		span:hover {
+			cursor: pointer;
+		}
+		.content {
+			width: 300vw;
+			display: flex;
+			position: relative;
+			transform: translateX(0);
+			transition: all .5s;
+		}
+		.modal {
+			width: 100vw;
+			height: 100vh;
+			position: fixed;
+			top: 0;
+			left: 0;
+			background: rgba(0, 0, 0, .7);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			display: none;
+		}
+		.modal_img {
+			width: 800px;
+			height: 600px;
+		}
+	</style>
+</head>
+<body>
+	<header class="my_header">
+		<div class="user_info">
+			<img class="user_img" src="./touxiang.png" alt="">
+			<p class="user_text">往事已矣，来者可追</p>
+		</div>
+		<div class="nav_bar">
+			<ul>
+				<li>
+					<span data-index="0" class="active">App</span>
+				</li>
+				<li>
+					<span data-index="1">Icon</span>
+				</li>
+				<li>
+					<span data-index="2">网页</span>
+				</li>
+			</ul>
+		</div>
+	</header>
+	<div class="window">
+		<div class="content" style="left: 0;">
+			<section class="my_body" id="app">
+			</section>
+			<section class="my_body" id="icon">
+			</section>
+			<section class="my_body" id="web">
+			</section>
+		</div>
+	</div>
+	<div class="modal">
+		<img class="modal_img" src="touxiang.png" alt="">
+	</div>
+	<script>
+		var imgArr1 = [
+			'./image/aaa.jpg',
+			'./image/bbb.jpg',
+			'./image/ccc.jpg',
+			'./image/ddd.jpg',
+			'./image/eee.jpg',
+			'./image/fff.jpg'
+		];
+
+		var imgArr2 = [
+			'./image/aaa.jpg',
+			'./image/bbb.jpg',
+			'./image/ccc.jpg',
+			'./image/ddd.jpg',
+			'./image/eee.jpg',
+			'./image/fff.jpg'
+		];
+		
+		var imgArr3 = [
+			'./image/aaa.jpg',
+			'./image/bbb.jpg',
+			'./image/ccc.jpg',
+			'./image/ddd.jpg',
+			'./image/eee.jpg',
+			'./image/fff.jpg'
+		];
+
+
+		var $ = function(e) {
+			return document.querySelector(e)
+		}
+
+		var section1 = $("#app");
+		var domArr1 = imgArr1.map(function(v) {
+			var img = document.createElement("img");
+			img.src = v;
+			img.className = "body_img";
+			return img;
+		})
+		domArr1.forEach(function(v) {
+			section1.appendChild(v);
+		})
+
+		var section2 = $("#icon");
+		var domArr2 = imgArr2.map(function(v) {
+			var img = document.createElement("img");
+			img.src = v;
+			img.className = "body_img";
+			return img;
+		})
+		domArr2.forEach(function(v) {
+			section2.appendChild(v);
+		})
+
+		var section3 = $("#web");
+		var domArr3 = imgArr3.map(function(v) {
+			var img = document.createElement("img");
+			img.src = v;
+			img.className = "body_img";
+			return img;
+		})
+		domArr3.forEach(function(v) {
+			section3.appendChild(v);
+		})
+
+		var content = $(".content")
+		var aArr = document.querySelectorAll("span");
+		var index = 0;
+		aArr.forEach(function(value) {
+			value.onclick = function(e) {
+
+				var clickIndex = e.target.attributes[0].value;
+				console.log(index, clickIndex);
+				if(index == clickIndex) {
+					return;
+				} else {					
+					index = clickIndex;
+					aArr.forEach(function(value) {
+						value.className = '';
+					})
+					aArr[index].className = 'active';
+
+					console.log(0 - index * 100);
+					var trans = 0 - index * 100;
+					content.style.left = trans + 'vw';
+				}
+			};
+		});
+
+		var imgDomArr = document.querySelectorAll(".body_img");
+		var modal = $(".modal");
+		var showImg = $(".modal_img");
+		imgDomArr.forEach(function(value){
+			value.onclick = function(e) {
+				var clickSrc = value.src;
+				showImg.src = clickSrc;
+				modal.style.display = 'flex';
+				console.log(showImg.src,modal);
+			};
+		});
+		modal.onclick = function() {
+			modal.style.display = 'none';
+			console.log('modal');
+		};
+		showImg.onclick = function(e) {
+			e.stopPropagation();
+		};
+	</script>
+</body>
+</html>
