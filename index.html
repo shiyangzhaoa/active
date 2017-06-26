@@ -3,12 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 	<title>QAQ</title>
 	<style>
 		body{
 			margin: 0;
 			padding: 0;
-			font-size: 20px;
+			font-size: 50%;
 			font-family: "Microsoft Yahei";
 			background-color: #eff3f5;
 			list-style:none;
@@ -19,26 +20,44 @@
 				width: 80vw;
 				height: 17vw;
 			}
-			.user_text {
-				font-size: .5rem;
-				margin-top: -10px;
-			}
 			.my_header {
 				height: 32vw;
+			}
+			.body_img {
+				width: 38vw;
+				height: 28.5vw;
+				margin: .2rem 1vw;
+				transition: all .5s;
+				padding: 1vw;
+				box-sizing: border-box;
+				border: 1px solid #ccc;
 			}
 		}
 		@media screen  and (min-width: 800px) {
 			.user_img {
-				width: 800px;
-				height: 170px;
+				width: 40rem;
+				height: 8.5rem;
 			}
 			.user_text {
 				font-size: .9rem;
-				margin-top: 
 			}
 			.my_header {
-				height: 320px;
+				height: 16rem;
 			}
+			.body_img {
+				width: 17vw;
+				height: 12.75vw;
+				margin: .2rem 1.5vw;
+				transition: all .5s;
+				padding: 1vw;
+				box-sizing: border-box;
+				border: 1px solid #ccc;
+			}
+		}
+		.body_img {
+			border-radius: 5px;
+			position: relative;
+			background: #fff;
 		}
 		.my_header {
 			width: 100vw;
@@ -54,11 +73,14 @@
 		.user_info {
 			position: relative;
 		}
+		span {
+			font-size: 1rem;
+		}
 		.user_text {
 			color: #232323;
 			position: absolute;
 			text-align: center;
-			bottom: 10px;
+			bottom: 2vw;
 			width: 100%;
 		}
 		.window {
@@ -69,7 +91,7 @@
 			width: 100vw;
 			padding: 0 10vw;
 			box-sizing: border-box;
-			margin: 40px 0;
+			margin: 2rem 0;
 			display: flex;
 			justify-content: flex-start;
 			flex-wrap: wrap;
@@ -78,26 +100,19 @@
 			width: 30vw;
 			height: 30vw;
 			background-color: #fff;
-			margin-top: 28px;
+			margin-top: 1.4rem;
 			display: inline-block;
 		}
-		.body_img {
-			width: 24%;
-			height: 12rem;
-			margin: 28px 4.66% 0 4.66%;
-			position: relative;
-			transition: all .5s;
-		}
 		.body_img:hover {
-			box-shadow: 0 0 20px 20px #ccc;
+			box-shadow: 0 0 1rem 1rem #ccc;
 			cursor: pointer;
-			transform: translateY(-20px);
+			transform: translateY(-1rem);
 		}
 		.nav_bar {
 			width: 100vw;
 			color: white;
 			position: absolute;
-			bottom: 10px;
+			bottom: .2rem;
 			display: flex;
 			justify-content: center;
 		}
@@ -107,18 +122,18 @@
 		}
 		.nav_bar li {
 			display: inline-block;
-			width: 30vw;
+			width: 23vw;
 			text-align: center;
 		}
 		.active {
-			border-bottom: 2px solid #000;
+			border-bottom: .1rem solid #000;
 			color: #000;
 		}
 		span:hover {
 			cursor: pointer;
 		}
 		.content {
-			width: 300vw;
+			width: 400vw;
 			display: flex;
 			position: relative;
 			transform: translateX(0);
@@ -137,8 +152,38 @@
 			display: none;
 		}
 		.modal_img {
-			width: 800px;
-			height: 600px;
+			width: 80vw;
+			height: 60vw;
+		}
+		.left {
+			background-image: url('left.png');
+			background-size: 100%;
+			background-repeat:  no-repeat;
+			background-position: 50% 50%;
+			width: 5vw;
+			height: 40vh;
+			background-color: rgba(250, 250, 250, .2);
+			transition: all 1s;
+			margin-right: 1vw;
+		}
+		.left:hover {
+			background-color: rgba(250, 250, 250, .6);
+			height: 60vh;
+		}
+		.right {
+			background-image: url('right.png');
+			background-size: 100%;
+			background-repeat:  no-repeat;
+			background-position: 50% 50%;
+			width: 5vw;
+			height: 40vh;
+			background-color: rgba(250, 250, 250, .2);
+			transition: all 1s;
+			margin-left: 1vw;
+		}
+		.right:hover {
+			background-color: rgba(250, 250, 250, .6);
+			height: 60vh;
 		}
 	</style>
 </head>
@@ -146,7 +191,7 @@
 	<header class="my_header">
 		<div class="user_info">
 			<img class="user_img" src="./touxiang.png" alt="">
-			<p class="user_text">往事已矣，来者可追</p>
+			<div class="user_text">往事已矣，来者可追</div>
 		</div>
 		<div class="nav_bar">
 			<ul>
@@ -159,6 +204,9 @@
 				<li>
 					<span data-index="2">网页</span>
 				</li>
+				<li>
+					<span data-index="3">插画</span>
+				</li>
 			</ul>
 		</div>
 	</header>
@@ -170,10 +218,14 @@
 			</section>
 			<section class="my_body" id="web">
 			</section>
+			<section class="my_body" id="illustration">
+			</section>
 		</div>
 	</div>
 	<div class="modal">
+		<div class="left"></div>
 		<img class="modal_img" src="touxiang.png" alt="">
+		<div class="right"></div>
 	</div>
 	<script>
 		var imgArr1 = [
@@ -203,10 +255,21 @@
 			'./image/fff.jpg'
 		];
 
+		var imgArr4 = [
+			'./image/aaa.jpg',
+			'./image/bbb.jpg',
+			'./image/ccc.jpg',
+			'./image/ddd.jpg',
+			'./image/eee.jpg',
+			'./image/fff.jpg'
+		];
+
 
 		var $ = function(e) {
 			return document.querySelector(e)
 		}
+
+		var defaulrSelect = '';
 
 		var section1 = $("#app");
 		var domArr1 = imgArr1.map(function(v) {
@@ -241,6 +304,17 @@
 			section3.appendChild(v);
 		})
 
+		var section4 = $("#illustration");
+		var domArr4 = imgArr4.map(function(v) {
+			var img = document.createElement("img");
+			img.src = v;
+			img.className = "body_img";
+			return img;
+		})
+		domArr4.forEach(function(v) {
+			section4.appendChild(v);
+		})
+
 		var content = $(".content")
 		var aArr = document.querySelectorAll("span");
 		var index = 0;
@@ -248,7 +322,6 @@
 			value.onclick = function(e) {
 
 				var clickIndex = e.target.attributes[0].value;
-				console.log(index, clickIndex);
 				if(index == clickIndex) {
 					return;
 				} else {					
@@ -257,32 +330,66 @@
 						value.className = '';
 					})
 					aArr[index].className = 'active';
-
-					console.log(0 - index * 100);
 					var trans = 0 - index * 100;
 					content.style.left = trans + 'vw';
 				}
 			};
 		});
 
+		var left = $(".left");
+		var right = $(".right");
+		switch(index) {
+			case 0: 
+				var showArr = imgArr1;
+				break;
+			case 1: 
+				var showArr = imgArr2;
+				break;
+			case 2: 
+				var showArr = imgArr3;
+				break;
+			case 3: 
+				var showArr = imgArr4;
+				break;
+			default:
+				break;
+		}
+		var indexNow = 0;
+
+
 		var imgDomArr = document.querySelectorAll(".body_img");
 		var modal = $(".modal");
 		var showImg = $(".modal_img");
-		imgDomArr.forEach(function(value){
-			value.onclick = function(e) {
-				var clickSrc = value.src;
-				showImg.src = clickSrc;
-				modal.style.display = 'flex';
-				console.log(showImg.src,modal);
-			};
+		imgDomArr.forEach(function(value, i){
+			value.onclick = (function(index) {
+				return function (e) {
+					var clickSrc = value.src;
+					showImg.src = clickSrc;
+					modal.style.display = 'flex';
+					indexNow = index;
+				}
+			})(i);
 		});
 		modal.onclick = function() {
 			modal.style.display = 'none';
-			console.log('modal');
 		};
 		showImg.onclick = function(e) {
 			e.stopPropagation();
 		};
+		left.onclick = function(e) {
+			e.stopPropagation();
+			console.log(indexNow, showArr);
+			if(indexNow === 0) {
+				return false;
+			};
+		}
+		right.onclick = function(e) {
+			e.stopPropagation();
+			console.log(indexNow, showArr);
+			if(indexNow === showArr.length) {
+				return false;
+			};
+		}
 	</script>
 </body>
 </html>
