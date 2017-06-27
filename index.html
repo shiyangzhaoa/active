@@ -31,7 +31,7 @@
 			.my_header {
 				height: 32vw;
 			}
-			.body_img {
+			.body_img1,  .body_img2, .body_img3, .body_img4{
 				width: 38vw;
 				height: 28.5vw;
 				margin: .2rem 1vw;
@@ -52,7 +52,7 @@
 			.my_header {
 				height: 16rem;
 			}
-			.body_img {
+			.body_img1,  .body_img2, .body_img3, .body_img4 {
 				width: 17vw;
 				height: 12.75vw;
 				margin: .2rem 1.5vw;
@@ -62,7 +62,7 @@
 				border: 1px solid #ccc;
 			}
 		}
-		.body_img {
+		.body_img1,  .body_img2, .body_img3, .body_img4 {
 			border-radius: 5px;
 			position: relative;
 			background: #fff;
@@ -113,7 +113,7 @@
 			margin-top: 1.4rem;
 			display: inline-block;
 		}
-		.body_img:hover {
+		.body_img1:hover,  .body_img2:hover, .body_img3:hover, .body_img4:hover {
 			box-shadow: 0 4px 16px 0 rgba(7,17,27,.2);
 			cursor: pointer;
 		}
@@ -262,8 +262,8 @@
 		];
 
 		var imgArr2 = [
-			'./image/aaa.jpg',
 			'./image/bbb.jpg',
+			'./image/aaa.jpg',
 			'./image/ccc.jpg',
 			'./image/ddd.jpg',
 			'./image/eee.jpg',
@@ -271,19 +271,19 @@
 		];
 		
 		var imgArr3 = [
+			'./image/ccc.jpg',
 			'./image/aaa.jpg',
 			'./image/bbb.jpg',
-			'./image/ccc.jpg',
 			'./image/ddd.jpg',
 			'./image/eee.jpg',
 			'./image/fff.jpg'
 		];
 
 		var imgArr4 = [
+			'./image/ddd.jpg',
 			'./image/aaa.jpg',
 			'./image/bbb.jpg',
 			'./image/ccc.jpg',
-			'./image/ddd.jpg',
 			'./image/eee.jpg',
 			'./image/fff.jpg'
 		];
@@ -299,7 +299,7 @@
 		var domArr1 = imgArr1.map(function(v) {
 			var img = document.createElement("img");
 			img.src = v;
-			img.className = "body_img";
+			img.className = "body_img1";
 			return img;
 		})
 		domArr1.forEach(function(v) {
@@ -310,7 +310,7 @@
 		var domArr2 = imgArr2.map(function(v) {
 			var img = document.createElement("img");
 			img.src = v;
-			img.className = "body_img";
+			img.className = "body_img2";
 			return img;
 		})
 		domArr2.forEach(function(v) {
@@ -321,7 +321,7 @@
 		var domArr3 = imgArr3.map(function(v) {
 			var img = document.createElement("img");
 			img.src = v;
-			img.className = "body_img";
+			img.className = "body_img3";
 			return img;
 		})
 		domArr3.forEach(function(v) {
@@ -332,7 +332,7 @@
 		var domArr4 = imgArr4.map(function(v) {
 			var img = document.createElement("img");
 			img.src = v;
-			img.className = "body_img";
+			img.className = "body_img4";
 			return img;
 		})
 		domArr4.forEach(function(v) {
@@ -342,6 +342,7 @@
 		var content = $(".content")
 		var aArr = document.querySelectorAll("span");
 		var index = 0;
+		var showArr = imgArr1;
 		aArr.forEach(function(value) {
 			value.onclick = function(e) {
 
@@ -357,35 +358,68 @@
 					var trans = 0 - index * 100;
 					content.style.left = trans + 'vw';
 				}
+				switch(index) {
+					case '0': 
+						showArr = imgArr1;
+						break;
+					case '1': 
+						showArr = imgArr2;
+						break;
+					case '2': 
+						showArr = imgArr3;
+						break;
+					case '3': 
+						showArr = imgArr4;
+						break;
+					default:
+						break;
+				}
 			};
 		});
 
 		var left = $(".left");
 		var right = $(".right");
-		switch(index) {
-			case 0: 
-				var showArr = imgArr1;
-				break;
-			case 1: 
-				var showArr = imgArr2;
-				break;
-			case 2: 
-				var showArr = imgArr3;
-				break;
-			case 3: 
-				var showArr = imgArr4;
-				break;
-			default:
-				break;
-		}
 		var indexNow = 0;
 
 
-		var imgDomArr = document.querySelectorAll(".body_img");
+		var imgDomArr1 = document.querySelectorAll(".body_img1");
+		var imgDomArr2 = document.querySelectorAll(".body_img2");
+		var imgDomArr3 = document.querySelectorAll(".body_img3");
+		var imgDomArr4 = document.querySelectorAll(".body_img4");
 		var modal = $(".modal");
 		var showImg = $(".modal_img");
 		var warning = $('.warning');
-		imgDomArr.forEach(function(value, i){
+		imgDomArr1.forEach(function(value, i){
+			value.onclick = (function(index) {
+				return function (e) {
+					var clickSrc = value.src;
+					showImg.src = clickSrc;
+					modal.style.display = 'flex';
+					indexNow = index;
+				}
+			})(i);
+		});
+		imgDomArr2.forEach(function(value, i){
+			value.onclick = (function(index) {
+				return function (e) {
+					var clickSrc = value.src;
+					showImg.src = clickSrc;
+					modal.style.display = 'flex';
+					indexNow = index;
+				}
+			})(i);
+		});
+		imgDomArr3.forEach(function(value, i){
+			value.onclick = (function(index) {
+				return function (e) {
+					var clickSrc = value.src;
+					showImg.src = clickSrc;
+					modal.style.display = 'flex';
+					indexNow = index;
+				}
+			})(i);
+		});
+		imgDomArr4.forEach(function(value, i){
 			value.onclick = (function(index) {
 				return function (e) {
 					var clickSrc = value.src;
