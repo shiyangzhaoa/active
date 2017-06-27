@@ -9,11 +9,19 @@
 		body{
 			margin: 0;
 			padding: 0;
-			font-size: 50%;
+			font-size: 1vw;
 			font-family: "Microsoft Yahei";
 			background-color: #eff3f5;
 			list-style:none;
 			list-style: none;
+		}
+		@keyframes change {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
 		}
 		@media screen  and (max-width: 800px) {
 			.user_img {
@@ -58,6 +66,8 @@
 			border-radius: 5px;
 			position: relative;
 			background: #fff;
+			box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    		transition: .3s all linear;
 		}
 		.my_header {
 			width: 100vw;
@@ -80,7 +90,7 @@
 			color: #232323;
 			position: absolute;
 			text-align: center;
-			bottom: 2vw;
+			bottom: 10%;
 			width: 100%;
 		}
 		.window {
@@ -104,9 +114,8 @@
 			display: inline-block;
 		}
 		.body_img:hover {
-			box-shadow: 0 0 1rem 1rem #ccc;
+			box-shadow: 0 4px 16px 0 rgba(7,17,27,.2);
 			cursor: pointer;
-			transform: translateY(-1rem);
 		}
 		.nav_bar {
 			width: 100vw;
@@ -138,6 +147,7 @@
 			position: relative;
 			transform: translateX(0);
 			transition: all .5s;
+			animation: change 5s;
 		}
 		.modal {
 			width: 100vw;
@@ -154,6 +164,7 @@
 		.modal_img {
 			width: 80vw;
 			height: 60vw;
+			animation: change 1s;
 		}
 		.left {
 			background-image: url('left.png');
@@ -382,13 +393,17 @@
 			if(indexNow === 0) {
 				return false;
 			};
+			indexNow--;
+			showImg.src = showArr[indexNow];
 		}
 		right.onclick = function(e) {
 			e.stopPropagation();
 			console.log(indexNow, showArr);
-			if(indexNow === showArr.length) {
+			if(indexNow === showArr.length-1) {
 				return false;
 			};
+			indexNow++;
+			showImg.src = showArr[indexNow];
 		}
 	</script>
 </body>
